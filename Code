@@ -1,0 +1,64 @@
+import java.util.Scanner;
+import java.util.Random;
+public class HangmanLexicon
+{ 
+	
+    public String getWord(int index) {
+    switch (index) {
+ 	case 0: return "BUOY";
+	case 1: return "COMPUTER";
+	case 2: return "CONNOISSEUR";
+	case 3: return "DEHYDRATE";
+	case 4: return "FUZZY";
+	case 5: return "HUBBUB";
+	case 6: return "KEYHOLE";
+	case 7: return "QUAGMIRE";
+	case 8: return "SLITHER";
+	case 9: return "ZIRCON";
+//default: throw new ErrorException("getWord: Illegal index");
+    default: return "no";
+    }
+    }
+
+	
+
+	public static void main(String[] args) 
+	{   
+      	Scanner sc = new Scanner(System.in);
+        Random rand = new Random();
+        //int i = rand.nextInt(10);
+        int i = 4;
+		HangmanLexicon tuffy = new HangmanLexicon(); 
+		String a = tuffy.getWord(i); 
+      	int k = a.length();
+      	System.out.println("Welcome to Hangman");
+      	String g="";
+      	for(int j =0;j<k;j++)
+		g+="-";
+      	System.out.println("Your word looks like" +g);
+		System.out.println("You have 8 guess left");
+      	int k1 = 8;
+      	while(k1>0)
+	   {	
+	      char w = sc.next().charAt(0);
+	      int in = a.indexOf(w);
+	      if(in==-1){
+		   // GCanvas.noteIncorrectGuess(k1-1);
+		    k1 = k1-1;
+		    System.out.println("You have " + k1 + " guess left");
+		}
+		    else{
+		        g = g.substring(0,in) + w + g.substring(in+1);
+		       
+		        System.out.println("Your word looks like "+ g);
+		        System.out.println("You have " + k1 + " guess left");
+		    
+		}
+		if(k1==0)System.out.println("You lose");
+		if(g==a){
+		    System.out.println("You won");
+		    break;
+		}
+        }
+	} 
+} 
